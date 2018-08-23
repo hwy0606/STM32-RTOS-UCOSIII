@@ -1,0 +1,33 @@
+#include  "stm32f4xx_gpio.h"
+#include "led.h"
+
+void LED_GPIO_Config(void)
+{
+	/*定义一个GPIO_InitTypeDef类型的结构体*/
+  GPIO_InitTypeDef  GPIO_InitStructure;
+  	/*开启GPIOF的外设时钟*/
+  RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOE|RCC_AHB1Periph_GPIOC, ENABLE);
+/*选择要控制的GPIOF引脚*/
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_5 | GPIO_Pin_6;
+  /*设置引脚模式为通用推挽输出*/
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;
+  GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
+  /*设置引脚速率为100MHz */
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;
+  GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;
+  	/*调用库函数，初始化GPIOF*/
+  GPIO_Init(GPIOE, &GPIO_InitStructure);
+
+
+	/*选择要控制的GPIOB引脚*/
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_13;
+  /*设置引脚模式为通用推挽输出*/
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;
+  GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
+  /*设置引脚速率为100MHz */
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;
+  GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;
+  	/*调用库函数，初始化GPIOF*/
+  GPIO_Init(GPIOC, &GPIO_InitStructure);
+
+}
